@@ -10,28 +10,28 @@
 <body>
   <div id="app"></div>
   <script src="node_modules/react/dist/react.js"></script>
-  <script src="node_modules//react-dom/dist/react-dom.js"></script>
+  <script src="node_modules/react-dom/dist/react-dom.js"></script>
   <script>
-    const MyTitle = function () {
+    const ce = React.createElement
+    const MyTitle = function (props) {
       return (
-        React.createElement("div", null,
-          React.createElement("h1", null, "My second component!!!1")
+        ce("div", null,
+          ce("h1", { style: { color: props.color } }, props.title)
         )
       )
     }
 
-
     const MyFirstComponent = function () {
-      return React.createElement("div", null,
-        [React.createElement(MyTitle),
-        React.createElement(MyTitle),
-        React.createElement(MyTitle),
-        React.createElement(MyTitle),
-        React.createElement(MyTitle),]
+      return ce("div", null,
+        [ce(MyTitle, { title: "hello", color: "skyblue" }),
+        ce(MyTitle, { title: "world", color: "orange" }),
+        ce(MyTitle, { title: "hello", color: "limegreen" }),
+        ce(MyTitle, { title: "world", color: "lime" }),
+        ce(MyTitle, { title: "hello", color: "cyan" }),]
       )
     }
     ReactDOM.render(
-      React.createElement(MyFirstComponent),
+      ce(MyFirstComponent),
       document.getElementById("app")
     )
   </script>
